@@ -1,0 +1,4 @@
+OrderID,CustomerID,OrderDate,ShipCity,Status
+501,101,2024-02-10,Chennai,Shipped
+502,102,2024-02-12,Bangalore,Delivered
+503,103,2024-02-13,Hyderabad,Pending

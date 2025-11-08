@@ -1,0 +1,4 @@
+PaymentID,OrderID,PaymentMode,Amount,PaymentDate
+201,501,UPI,500,2024-02-10
+202,502,Credit Card,250,2024-02-12
+203,503,Cash,1250,2024-02-13
