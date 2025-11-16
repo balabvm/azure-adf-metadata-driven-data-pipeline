@@ -16,6 +16,9 @@
 			"transformations": [
 				{
 					"name": "FilterNewRows"
+				},
+				{
+					"name": "ConvertCreatedDate"
 				}
 			],
 			"scriptLines": [
@@ -30,7 +33,8 @@
 				"     validateSchema: false,",
 				"     limit: 100,",
 				"     ignoreNoFilesFound: false) ~> IncrementalClaimsDataFlow",
-				"IncrementalClaimsDataFlow filter(CreatedDate_datetime > $LastLoadDate) ~> FilterNewRows"
+				"ConvertCreatedDate filter(CreatedDate_datetime > $LastLoadDate) ~> FilterNewRows",
+				"IncrementalClaimsDataFlow derive(CreatedDate = toDate(CreatedDate,'yyyy-MM-dd')) ~> ConvertCreatedDate"
 			]
 		}
 	}
