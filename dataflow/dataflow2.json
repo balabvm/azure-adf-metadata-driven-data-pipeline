@@ -30,7 +30,7 @@
 				"     validateSchema: false,",
 				"     limit: 100,",
 				"     ignoreNoFilesFound: false) ~> IncrementalClaimsDataFlow",
-				"IncrementalClaimsDataFlow filter(ERROR_FUNCTION('')) ~> FilterNewRows"
+				"IncrementalClaimsDataFlow filter(CreatedDate_datetime > $LastLoadDate) ~> FilterNewRows"
 			]
 		}
 	}
