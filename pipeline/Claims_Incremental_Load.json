@@ -146,7 +146,13 @@
 				"name": "Filter1",
 				"type": "Filter",
 				"dependsOn": [],
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"condition": {
+						"value": "toDate(CreatedDate,'yyyy-MM-dd') > toDate($LastLoadDate,'yyyy-MM-dd')",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"annotations": []
