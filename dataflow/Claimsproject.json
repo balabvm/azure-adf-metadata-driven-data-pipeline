@@ -16,6 +16,9 @@
 			"transformations": [
 				{
 					"name": "ConvertCreatedDate"
+				},
+				{
+					"name": "FilterNewRows"
 				}
 			],
 			"scriptLines": [
@@ -30,7 +33,8 @@
 				"     validateSchema: false,",
 				"     limit: 100,",
 				"     ignoreNoFilesFound: false) ~> IncrementalClaimsDataFlow",
-				"IncrementalClaimsDataFlow derive(CreatedDate = toDate(CreatedDate,'yyyy-MM-dd HH:mm:ss')) ~> ConvertCreatedDate"
+				"FilterNewRows derive(CreatedDate = toDate(CreatedDate,'yyyy-MM-dd HH:mm:ss')) ~> ConvertCreatedDate",
+				"IncrementalClaimsDataFlow filter(ERROR_FUNCTION('')) ~> FilterNewRows"
 			]
 		}
 	}
