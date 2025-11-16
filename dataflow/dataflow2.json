@@ -13,11 +13,7 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [
-				{
-					"name": "filter1"
-				}
-			],
+			"transformations": [],
 			"scriptLines": [
 				"source(output(",
 				"          ClaimID as string,",
@@ -29,8 +25,7 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     limit: 100,",
-				"     ignoreNoFilesFound: false) ~> IncrementalClaimsDataFlow",
-				"IncrementalClaimsDataFlow filter(CreatedDate_datetime > $LastLoadDate) ~> filter1"
+				"     ignoreNoFilesFound: false) ~> IncrementalClaimsDataFlow"
 			]
 		}
 	}
