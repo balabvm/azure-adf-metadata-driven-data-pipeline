@@ -157,7 +157,14 @@
 			{
 				"name": "RunIncrementalClaimsDF",
 				"type": "ExecuteDataFlow",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "GetLastLoadDate",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -169,7 +176,13 @@
 				"typeProperties": {
 					"dataflow": {
 						"referenceName": "Claimsproject",
-						"type": "DataFlowReference"
+						"type": "DataFlowReference",
+						"parameters": {
+							"LastLoadDate": {
+								"value": "@activity('GetLastLoadDate').output.firstRow.LastLoadDate\n",
+								"type": "Expression"
+							}
+						}
 					},
 					"compute": {
 						"coreCount": 8,
