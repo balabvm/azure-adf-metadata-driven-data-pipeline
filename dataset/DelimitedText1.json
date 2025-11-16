@@ -1,0 +1,53 @@
+{
+	"name": "DelimitedText1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "lrs",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "randomuser",
+				"container": "dummycsv"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "SubscriptionID",
+				"type": "String"
+			},
+			{
+				"name": "ResourceGroup",
+				"type": "String"
+			},
+			{
+				"name": "ResourceName",
+				"type": "String"
+			},
+			{
+				"name": "ResourceType",
+				"type": "String"
+			},
+			{
+				"name": "Region",
+				"type": "String"
+			},
+			{
+				"name": "CostUSD",
+				"type": "String"
+			},
+			{
+				"name": "Tags",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

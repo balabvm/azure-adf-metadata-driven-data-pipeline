@@ -1,0 +1,9 @@
+{
+	"name": "adfpracticefirst",
+	"location": "eastasia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "7bc08c32-3ffe-4499-a734-d748c5362238",
+		"tenantId": "c4b55551-f6a1-4963-a149-87b7b8b7af21"
+	}
+}
