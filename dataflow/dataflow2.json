@@ -34,7 +34,7 @@
 				"     limit: 100,",
 				"     ignoreNoFilesFound: false) ~> IncrementalClaimsDataFlow",
 				"ConvertCreatedDate filter(CreatedDate_datetime > $LastLoadDate) ~> FilterNewRows",
-				"IncrementalClaimsDataFlow derive(CreatedDate = toDate(CreatedDate,'yyyy-MM-dd')) ~> ConvertCreatedDate"
+				"IncrementalClaimsDataFlow derive(CreatedDate = toDate(CreatedDate,'yyyy-MM-dd HH:mm:ss')) ~> ConvertCreatedDate"
 			]
 		}
 	}
