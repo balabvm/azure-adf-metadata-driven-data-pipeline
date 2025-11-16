@@ -22,6 +22,9 @@
 				}
 			],
 			"scriptLines": [
+				"parameters{",
+				"     LastLoadDate as date",
+				"}",
 				"source(output(",
 				"          ClaimID as string,",
 				"          PatientName as string,",
