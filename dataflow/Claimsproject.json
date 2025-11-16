@@ -1,5 +1,5 @@
 {
-	"name": "dataflow2",
+	"name": "Claimsproject",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
@@ -14,9 +14,6 @@
 			],
 			"sinks": [],
 			"transformations": [
-				{
-					"name": "FilterNewRows"
-				},
 				{
 					"name": "ConvertCreatedDate"
 				}
@@ -33,7 +30,6 @@
 				"     validateSchema: false,",
 				"     limit: 100,",
 				"     ignoreNoFilesFound: false) ~> IncrementalClaimsDataFlow",
-				"ConvertCreatedDate filter(CreatedDate_datetime > $LastLoadDate) ~> FilterNewRows",
 				"IncrementalClaimsDataFlow derive(CreatedDate = toDate(CreatedDate,'yyyy-MM-dd HH:mm:ss')) ~> ConvertCreatedDate"
 			]
 		}
