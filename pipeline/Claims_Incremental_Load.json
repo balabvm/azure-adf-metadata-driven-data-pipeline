@@ -60,6 +60,68 @@
 					"enableStaging": false,
 					"translator": {
 						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "ClaimID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ClaimID",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PatientName",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "PatientName",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Insurance",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Insurance",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Amount",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Amount",
+									"type": "Double",
+									"physicalType": "float"
+								}
+							},
+							{
+								"source": {
+									"name": "CreatedDate",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CreatedDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							}
+						],
 						"typeConversion": true,
 						"typeConversionSettings": {
 							"allowDataTruncation": true,
