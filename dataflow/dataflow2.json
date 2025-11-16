@@ -9,11 +9,15 @@
 						"referenceName": "sourceclaims",
 						"type": "DatasetReference"
 					},
-					"name": "Claims"
+					"name": "IncrementalClaimsDataFlow"
 				}
 			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "filter1"
+				}
+			],
 			"scriptLines": [
 				"source(output(",
 				"          ClaimID as string,",
@@ -25,7 +29,8 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     limit: 100,",
-				"     ignoreNoFilesFound: false) ~> Claims"
+				"     ignoreNoFilesFound: false) ~> IncrementalClaimsDataFlow",
+				"IncrementalClaimsDataFlow filter(CreatedDate_datetime > $LastLoadDate) ~> filter1"
 			]
 		}
 	}
