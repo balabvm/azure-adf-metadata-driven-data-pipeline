@@ -1,0 +1,32 @@
+{
+	"name": "dataflow2",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "sourceclaims",
+						"type": "DatasetReference"
+					},
+					"name": "Claims"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          ClaimID as string,",
+				"          PatientName as string,",
+				"          Insurance as string,",
+				"          Amount as string,",
+				"          CreatedDate as string 'toDate(CreatedDate,\\'yyyy-MM-dd\\')'",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     limit: 100,",
+				"     ignoreNoFilesFound: false) ~> Claims"
+			]
+		}
+	}
+}
