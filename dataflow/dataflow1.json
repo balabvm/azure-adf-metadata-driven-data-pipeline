@@ -28,7 +28,7 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> rawdataset",
-				"rawdataset derive(name = ERROR_FUNCTION('')) ~> MakeUpperCase"
+				"rawdataset derive(name_upper = ERROR_FUNCTION('')) ~> MakeUpperCase"
 			]
 		}
 	}
