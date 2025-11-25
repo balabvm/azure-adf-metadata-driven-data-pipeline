@@ -1,5 +1,5 @@
 {
-	"name": "dataflow1",
+	"name": "MakeUpperCase",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
@@ -28,7 +28,7 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> rawdataset",
-				"rawdataset derive(name_upper = ERROR_FUNCTION('')) ~> MakeUpperCase"
+				"rawdataset derive(name_upper = upper(name)) ~> MakeUpperCase"
 			]
 		}
 	}
