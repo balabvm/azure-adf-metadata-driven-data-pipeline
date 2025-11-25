@@ -13,7 +13,11 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
 			"scriptLines": [
 				"source(output(",
 				"          Id as string,",
@@ -23,7 +27,8 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> rawdataset"
+				"     ignoreNoFilesFound: false) ~> rawdataset",
+				"rawdataset derive() ~> derivedColumn1"
 			]
 		}
 	}
