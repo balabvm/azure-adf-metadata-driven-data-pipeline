@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adfpracticefirst"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_password": {
+			"value": ""
+		},
+		"balalinkservice_accountKey": {
+			"value": ""
+		},
+		"lrs_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://adfstorageaccountfirst.dfs.core.windows.net/"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"value": "balasqlserver.database.windows.net"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"value": "baladbo"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"value": "balabvm"
+		},
+		"LS_RandomUser_API_properties_typeProperties_url": {
+			"value": "https://randomuser.me/api/"
+		},
+		"balalinkservice_properties_typeProperties_url": {
+			"value": "https://adfstorageaccountbala.dfs.core.windows.net/"
+		}
+	}
+}
