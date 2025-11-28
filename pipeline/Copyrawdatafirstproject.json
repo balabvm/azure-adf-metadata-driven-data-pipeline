@@ -72,6 +72,15 @@
 				"type": "string"
 			}
 		},
+		"variables": {
+			"vCurrentMaxWatermark": {
+				"type": "String"
+			},
+			"vRowsCopied": {
+				"type": "Integer",
+				"defaultValue": 0
+			}
+		},
 		"annotations": []
 	}
 }
