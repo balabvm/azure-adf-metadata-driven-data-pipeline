@@ -1,6 +1,11 @@
 {
 	"name": "Incremental load",
 	"properties": {
+		"parameters": {
+			"pTableName": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
