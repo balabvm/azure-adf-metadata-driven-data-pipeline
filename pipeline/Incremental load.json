@@ -4,6 +4,20 @@
 		"parameters": {
 			"pTableName": {
 				"type": "string"
+			},
+			"pWatermarkColumn": {
+				"type": "string"
+			},
+			"pDefaultWatermark": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"vCurrentMaxWatermark": {
+				"type": "String"
+			},
+			"vRowsCopied": {
+				"type": "Integer"
 			}
 		},
 		"annotations": []
