@@ -37,10 +37,12 @@
 				"defaultValue": "dbo.Watermark"
 			},
 			"pWatermarkColumn": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "LastWatermarkValue"
 			},
 			"pDefaultWatermark": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "1900-01-01T00:00:00Z"
 			}
 		},
 		"variables": {
