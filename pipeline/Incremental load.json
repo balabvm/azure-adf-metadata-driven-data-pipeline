@@ -38,7 +38,7 @@
 			},
 			"pWatermarkColumn": {
 				"type": "string",
-				"defaultValue": "LastWatermarkValue"
+				"defaultValue": "LastModifiedDate"
 			},
 			"pDefaultWatermark": {
 				"type": "string",
