@@ -40,7 +40,7 @@
 				"type": "string",
 				"defaultValue": "LastWatermarkValue"
 			},
-			"pDefaultWatermark": {
+			"pLastWatermarkValue": {
 				"type": "string",
 				"defaultValue": "1900-01-01"
 			}
