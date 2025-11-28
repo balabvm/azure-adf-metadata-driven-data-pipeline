@@ -64,6 +64,12 @@
 		"parameters": {
 			"pTableName": {
 				"type": "string"
+			},
+			"pWatermarkColumn": {
+				"type": "string"
+			},
+			"pDefaultWatermark": {
+				"type": "string"
 			}
 		},
 		"annotations": []
