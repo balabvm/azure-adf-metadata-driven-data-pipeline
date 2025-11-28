@@ -17,7 +17,10 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "SELECT LastWatermarkValue\nFROM dbo.Watermark\nWHERE TableName = '@{pipeline().parameters.pTableName}'",
+						"sqlReaderQuery": {
+							"value": "SELECT LastWatermarkValue\nFROM dbo.Watermark\nWHERE TableName = '@{pipeline().parameters.pDefaultWatermark}'",
+							"type": "Expression"
+						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
