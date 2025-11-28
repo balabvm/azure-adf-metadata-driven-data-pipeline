@@ -42,7 +42,7 @@
 			},
 			"pDefaultWatermark": {
 				"type": "string",
-				"defaultValue": "1900-01-01T00:00:00Z"
+				"defaultValue": "1900-01-01"
 			}
 		},
 		"variables": {
