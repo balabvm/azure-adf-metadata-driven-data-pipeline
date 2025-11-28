@@ -31,7 +31,7 @@
 				}
 			},
 			{
-				"name": "Copy data1",
+				"name": "Copy_NewFiles_To_Staging",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -43,8 +43,24 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
 					"enableStaging": false
-				}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_CustomerCSV",
+						"type": "DatasetReference"
+					}
+				]
 			},
 			{
 				"name": "Get_NewFiles",
