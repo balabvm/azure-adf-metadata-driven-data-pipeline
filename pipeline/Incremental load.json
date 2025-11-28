@@ -47,7 +47,7 @@
 				}
 			},
 			{
-				"name": "Lookup1",
+				"name": "Get_NewFiles",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
