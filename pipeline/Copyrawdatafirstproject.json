@@ -61,6 +61,11 @@
 				]
 			}
 		],
+		"parameters": {
+			"pTableName": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
