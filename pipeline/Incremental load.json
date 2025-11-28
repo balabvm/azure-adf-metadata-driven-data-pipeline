@@ -17,7 +17,8 @@
 				"type": "String"
 			},
 			"vRowsCopied": {
-				"type": "Integer"
+				"type": "Integer",
+				"defaultValue": 0
 			}
 		},
 		"annotations": []
