@@ -49,7 +49,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "select order_Id",
+						"sqlReaderQuery": "select order_Id, Name, inserttime from orders",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
