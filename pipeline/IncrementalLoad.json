@@ -50,7 +50,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "select order_Id,\n       name,\n       inserttime\nfrom orders\nwhere inserttime > CAST('@{activity('Getmaxitime').output.firstRow.date1}' AS date1)\n",
+							"value": "SELECT \n    Order_Id,\n    Name,\n    Inserttime\nFROM orders\nWHERE Inserttime >= CAST('@{activity('Getmaxitime').output.firstRow.date1}' AS datetime2)",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
