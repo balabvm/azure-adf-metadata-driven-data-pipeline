@@ -49,10 +49,6 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": {
-							"value": "SELECT \n    Order_Id,\n    Name,\n    Inserttime\nFROM orders\nWHERE Inserttime >= CAST('@{activity('Getmaxitime').output.firstRow.date1}' AS datetime2)",
-							"type": "Expression"
-						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
