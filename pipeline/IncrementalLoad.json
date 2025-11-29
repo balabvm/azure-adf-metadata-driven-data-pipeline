@@ -47,8 +47,20 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "select order_Id,name,insertime from orders",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
 					"enableStaging": false
-				}
+				},
+				"inputs": [
+					{
+						"referenceName": "Source_copy",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"annotations": []
