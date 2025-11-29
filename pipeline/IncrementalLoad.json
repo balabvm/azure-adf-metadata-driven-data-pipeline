@@ -79,9 +79,8 @@
 							},
 							{
 								"source": {
-									"name": "name",
-									"type": "String",
-									"physicalType": "varchar"
+									"name": "Name",
+									"type": "varchar"
 								},
 								"sink": {
 									"name": "Name",
