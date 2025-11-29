@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "select max(inserttime) from orders_final",
+						"sqlReaderQuery": "select max(inserttime) as date1 from orders_final",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -49,7 +49,10 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "select order_Id,name,insertime from orders",
+						"sqlReaderQuery": {
+							"value": "select order_Id,name,inserttime from orders\nwhere inserttime>'@{activity('Getmaxitime').output.firstRow.date1}'",
+							"type": "Expression"
+						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
