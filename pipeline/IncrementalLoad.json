@@ -90,9 +90,10 @@
 							},
 							{
 								"source": {
-									"name": "inserttime",
-									"type": "DateTime",
-									"physicalType": "datetime"
+									"name": "Inserttime",
+									"type": "datetime",
+									"scale": 3,
+									"precision": 23
 								},
 								"sink": {
 									"name": "Inserttime",
