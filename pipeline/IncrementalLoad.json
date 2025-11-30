@@ -13,11 +13,16 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
+				"userProperties": [
+					{
+						"name": "LastInserttime",
+						"value": "@activity('GetMaxTime').output.firstRow.date1"
+					}
+				],
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "select max(inserttime) as date1 from orders_final",
+						"sqlReaderQuery": "SELECT MAX(Inserttime) AS date1\nFROM orders_final",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
