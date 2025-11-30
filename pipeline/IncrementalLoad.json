@@ -22,7 +22,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "SELECT MAX(Inserttime) AS LastTime\nFROM orders_final;",
+						"sqlReaderQuery": "SELECT ISNULL(MAX(Inserttime), '1900-01-01') AS LastTime\nFROM orders_final;\n",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -55,7 +55,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "SELECT Order_Id, Name, Inserttime\nFROM Orders\nWHERE Inserttime > '@{activity('Getmaxitime').output.firstRow.LastTime}'\n",
+							"value": "@concat(\n'SELECT Order_Id, Name, Inserttime FROM Orders WHERE Inserttime > ''',\nactivity('Getmaxitime').output.firstRow.LastTime,\n'''')",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
