@@ -55,7 +55,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "SELECT Order_Id, Name, Inserttime\nFROM Orders\nWHERE Inserttime > @{activity('Getmaxitime').output.firstRow.LastTime}",
+							"value": "SELECT Order_Id, Name, Inserttime\nFROM Orders\nWHERE Inserttime > '@{activity('Getmaxitime').output.firstRow.LastTime}'\n",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
