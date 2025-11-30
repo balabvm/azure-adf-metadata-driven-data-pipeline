@@ -31,8 +31,37 @@
 						"type": "DatasetReference"
 					}
 				}
+			},
+			{
+				"name": "SetLastTime",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Getmaxitime",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "vLastTime",
+					"value": {
+						"value": "@activity('Getmaxitime').output.firstRow.LastTime",
+						"type": "Expression"
+					}
+				}
 			}
 		],
+		"variables": {
+			"vLastTime": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
