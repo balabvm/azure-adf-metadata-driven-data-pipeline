@@ -134,7 +134,7 @@
 							]
 						},
 						{
-							"name": "Stored procedure1",
+							"name": "LogMissingOrder",
 							"type": "SqlServerStoredProcedure",
 							"dependsOn": [
 								{
@@ -151,7 +151,19 @@
 								"secureOutput": false,
 								"secureInput": false
 							},
-							"userProperties": []
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[LogMissingOrder]",
+								"storedProcedureParameters": {
+									"undefined": {
+										"value": ""
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "AzureSqlDatabase1",
+								"type": "LinkedServiceReference"
+							}
 						}
 					]
 				}
