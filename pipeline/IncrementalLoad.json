@@ -28,8 +28,8 @@
 				}
 			},
 			{
-				"name": "If Condition1",
-				"type": "IfCondition",
+				"name": "Copydata",
+				"type": "Copy",
 				"dependsOn": [
 					{
 						"activity": "Getmaxitime",
@@ -38,180 +38,51 @@
 						]
 					}
 				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
 				"userProperties": [],
 				"typeProperties": {
-					"expression": {
-						"value": "@greater(length(string(activity('Getmaxitime').output.firstRow.date1)), 0)",
-						"type": "Expression"
-					},
-					"ifFalseActivities": [
-						{
-							"name": "LogNoNewRows",
-							"type": "SqlServerStoredProcedure",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "0.12:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"storedProcedureName": "[dbo].[LogNoNewRows]",
-								"storedProcedureParameters": {
-									"PipelineName": {
-										"value": "\"IncrementalLoad\"",
-										"type": "String"
-									},
-									"Message": {
-										"value": "\"No new rows found in the source table\"",
-										"type": "String"
-									}
-								}
-							},
-							"linkedServiceName": {
-								"referenceName": "AzureSqlDatabase1",
-								"type": "LinkedServiceReference"
-							}
-						}
-					],
-					"ifTrueActivities": [
-						{
-							"name": "Copydata",
-							"type": "Copy",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "0.12:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"source": {
-									"type": "AzureSqlSource",
-									"sqlReaderQuery": {
-										"value": "select Order_Id, Name, Inserttime from orders\nWHERE inserttime >'@{activity('Getmaxitime').output.firstRow.date1}'",
-										"type": "Expression"
-									},
-									"queryTimeout": "02:00:00",
-									"partitionOption": "None"
-								},
-								"sink": {
-									"type": "AzureSqlSink",
-									"writeBehavior": "insert",
-									"sqlWriterUseTableLock": false
-								},
-								"enableStaging": false,
-								"translator": {
-									"type": "TabularTranslator",
-									"mappings": [
-										{
-											"source": {
-												"name": "Order_Id",
-												"type": "Int32",
-												"physicalType": "int"
-											},
-											"sink": {
-												"name": "Order_Id",
-												"type": "Int32",
-												"physicalType": "int"
-											}
-										},
-										{
-											"source": {
-												"name": "Name",
-												"type": "varchar"
-											},
-											"sink": {
-												"name": "Name",
-												"type": "String",
-												"physicalType": "varchar"
-											}
-										},
-										{
-											"source": {
-												"name": "Inserttime",
-												"type": "datetime",
-												"scale": 3,
-												"precision": 23
-											},
-											"sink": {
-												"name": "Inserttime",
-												"type": "DateTime",
-												"physicalType": "datetime"
-											}
-										}
-									],
-									"typeConversion": true,
-									"typeConversionSettings": {
-										"allowDataTruncation": true,
-										"treatBooleanAsNumber": false
-									}
-								}
-							},
-							"inputs": [
-								{
-									"referenceName": "Source_copy",
-									"type": "DatasetReference"
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "sourcetable",
-									"type": "DatasetReference"
-								}
-							]
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": {
+							"value": "SELECT Order_Id, Name, Inserttime \nFROM Orders\nWHERE Inserttime > CONVERT(datetime, '@{activity('Getmaxitime').output.firstRow.date1}', 120)",
+							"type": "Expression"
 						},
-						{
-							"name": "LogMissingOrder",
-							"type": "SqlServerStoredProcedure",
-							"dependsOn": [
-								{
-									"activity": "Copydata",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"policy": {
-								"timeout": "0.12:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"storedProcedureName": "[dbo].[LogMissingOrder]",
-								"storedProcedureParameters": {
-									"Order_Id": {
-										"value": "@{item().Order_Id}",
-										"type": "Int16"
-									},
-									"Name": {
-										"value": "@{item().Name}",
-										"type": "String"
-									},
-									"Issue": {
-										"value": "'Missing in Target'",
-										"type": "String"
-									},
-									"LoggedAt": {
-										"value": "@{utcNow()}",
-										"type": "Datetime"
-									}
-								}
-							},
-							"linkedServiceName": {
-								"referenceName": "AzureSqlDatabase1",
-								"type": "LinkedServiceReference"
-							}
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
 						}
-					]
-				}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "sourcetable",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Source_copy",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"annotations": []
