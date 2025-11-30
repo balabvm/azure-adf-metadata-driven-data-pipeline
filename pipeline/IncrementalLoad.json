@@ -28,8 +28,8 @@
 				}
 			},
 			{
-				"name": "Copydata",
-				"type": "Copy",
+				"name": "If Condition1",
+				"type": "IfCondition",
 				"dependsOn": [
 					{
 						"activity": "Getmaxitime",
@@ -38,89 +38,103 @@
 						]
 					}
 				],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
 				"userProperties": [],
 				"typeProperties": {
-					"source": {
-						"type": "AzureSqlSource",
-						"sqlReaderQuery": {
-							"value": "select Order_Id, Name, Inserttime from orders\nWHERE inserttime >'@{activity('Getmaxitime').output.firstRow.date1}'",
-							"type": "Expression"
-						},
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
+					"expression": {
+						"value": "@greater(length(string(activity('Getmaxitime').output.firstRow.date1)), 0)",
+						"type": "Expression"
 					},
-					"sink": {
-						"type": "AzureSqlSink",
-						"writeBehavior": "insert",
-						"sqlWriterUseTableLock": false
-					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"mappings": [
-							{
+					"ifTrueActivities": [
+						{
+							"name": "Copydata",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
 								"source": {
-									"name": "Order_Id",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "AzureSqlSource",
+									"sqlReaderQuery": {
+										"value": "select Order_Id, Name, Inserttime from orders\nWHERE inserttime >'@{activity('Getmaxitime').output.firstRow.date1}'",
+										"type": "Expression"
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
 								},
 								"sink": {
-									"name": "Order_Id",
-									"type": "Int32",
-									"physicalType": "int"
+									"type": "AzureSqlSink",
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"name": "Order_Id",
+												"type": "Int32",
+												"physicalType": "int"
+											},
+											"sink": {
+												"name": "Order_Id",
+												"type": "Int32",
+												"physicalType": "int"
+											}
+										},
+										{
+											"source": {
+												"name": "Name",
+												"type": "varchar"
+											},
+											"sink": {
+												"name": "Name",
+												"type": "String",
+												"physicalType": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Inserttime",
+												"type": "datetime",
+												"scale": 3,
+												"precision": 23
+											},
+											"sink": {
+												"name": "Inserttime",
+												"type": "DateTime",
+												"physicalType": "datetime"
+											}
+										}
+									],
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
 								}
 							},
-							{
-								"source": {
-									"name": "Name",
-									"type": "varchar"
-								},
-								"sink": {
-									"name": "Name",
-									"type": "String",
-									"physicalType": "varchar"
+							"inputs": [
+								{
+									"referenceName": "Source_copy",
+									"type": "DatasetReference"
 								}
-							},
-							{
-								"source": {
-									"name": "Inserttime",
-									"type": "datetime",
-									"scale": 3,
-									"precision": 23
-								},
-								"sink": {
-									"name": "Inserttime",
-									"type": "DateTime",
-									"physicalType": "datetime"
+							],
+							"outputs": [
+								{
+									"referenceName": "sourcetable",
+									"type": "DatasetReference"
 								}
-							}
-						],
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
+							]
 						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "Source_copy",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "sourcetable",
-						"type": "DatasetReference"
-					}
-				]
+					]
+				}
 			}
 		],
 		"annotations": []
