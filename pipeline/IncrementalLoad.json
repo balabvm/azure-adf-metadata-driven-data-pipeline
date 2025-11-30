@@ -188,16 +188,20 @@
 								"storedProcedureName": "[dbo].[LogMissingOrder]",
 								"storedProcedureParameters": {
 									"@Order_Id": {
-										"value": "@{item().Order_Id}"
+										"value": "@{item().Order_Id}",
+										"type": "Int16"
 									},
 									"@Name": {
-										"value": "@{item().Name}"
+										"value": "@{item().Name}",
+										"type": "String"
 									},
 									"@Issue": {
-										"value": "'Missing in Target'"
+										"value": "'Missing in Target'",
+										"type": "String"
 									},
 									"@LoggedAt": {
-										"value": "@{utcNow()}"
+										"value": "@{utcNow()}",
+										"type": "Datetime"
 									}
 								}
 							},
