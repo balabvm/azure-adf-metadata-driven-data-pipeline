@@ -50,6 +50,44 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "copydata",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "SetLastTime",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": {
+							"value": "SELECT Order_Id, Name, Inserttime\nFROM Orders\nWHERE Inserttime > CAST('@{activity('Getmaxitime').output.firstRow.LastTime}' AS datetime2)\n   OR '@{activity('Getmaxitime').output.firstRow.LastTime}' = ''",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "sourcetable",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"variables": {
