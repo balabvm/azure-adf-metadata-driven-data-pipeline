@@ -55,7 +55,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "SELECT Order_Id, Name, Inserttime \nFROM Orders\nWHERE Inserttime > @{activity('Getmaxitime').output.firstRow.date1}",
+							"value": "SELECT Order_Id, Name, Inserttime \nFROM Orders\nWHERE inserttime > CAST('@{activity('Getmaxitime').output.firstRow.date1}' AS datetime2)",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
@@ -90,6 +90,12 @@
 				]
 			}
 		],
+		"parameters": {
+			"LastInserttime": {
+				"type": "Object",
+				"defaultValue": "@activity('GetMaxTime').output.firstRow.date1"
+			}
+		},
 		"annotations": []
 	}
 }
