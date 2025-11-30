@@ -31,63 +31,6 @@
 						"type": "DatasetReference"
 					}
 				}
-			},
-			{
-				"name": "Copydata",
-				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "Getmaxitime",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "AzureSqlSource",
-						"sqlReaderQuery": {
-							"value": "@concat(\n'SELECT Order_Id, Name, Inserttime FROM Orders WHERE Inserttime > ''',\nactivity('Getmaxitime').output.firstRow.LastTime,\n''''\n)\n",
-							"type": "Expression"
-						},
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
-					},
-					"sink": {
-						"type": "AzureSqlSink",
-						"writeBehavior": "insert",
-						"sqlWriterUseTableLock": false
-					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "sourcetable",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "Source_copy",
-						"type": "DatasetReference"
-					}
-				]
 			}
 		],
 		"annotations": []
