@@ -74,7 +74,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "SELECT Order_Id, Name, Inserttime\nFROM Orders\nWHERE Inserttime > CAST('@{activity('Getmaxitime').output.firstRow.LastTime}' AS datetime2)\n   OR '@{activity('Getmaxitime').output.firstRow.LastTime}' = ''",
+							"value": "@concat(\n'SELECT Order_Id, Name, Inserttime FROM Orders WHERE Inserttime > ''',\nactivity('Getmaxitime').output.firstRow.LastTime,\n''''\n)\n",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
