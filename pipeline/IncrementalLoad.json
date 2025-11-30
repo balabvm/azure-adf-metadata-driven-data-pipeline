@@ -57,6 +57,19 @@
 								"secureInput": false
 							},
 							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[LogNoNewRows]",
+								"storedProcedureParameters": {
+									"PipelineName": {
+										"value": "\"IncrementalLoad\"",
+										"type": "String"
+									},
+									"Message": {
+										"value": "\"No new rows found in the source table\"",
+										"type": "String"
+									}
+								}
+							},
 							"linkedServiceName": {
 								"referenceName": "AzureSqlDatabase1",
 								"type": "LinkedServiceReference"
