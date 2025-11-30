@@ -90,12 +90,6 @@
 				]
 			}
 		],
-		"parameters": {
-			"LastInserttime": {
-				"type": "Object",
-				"defaultValue": "@activity('GetMaxTime').output.firstRow.date1"
-			}
-		},
 		"annotations": []
 	}
 }
