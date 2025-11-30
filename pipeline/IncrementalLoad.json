@@ -155,6 +155,12 @@
 							"typeProperties": {
 								"storedProcedureName": "[dbo].[LogMissingOrder]",
 								"storedProcedureParameters": {
+									"@Order_Id": {
+										"value": "@{item().Order_Id}"
+									},
+									"@Name": {
+										"value": "@{item().Name}"
+									},
 									"undefined": {
 										"value": ""
 									}
