@@ -50,7 +50,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "SELECT Order_Id, Name, Inserttime \nFROM Orders\nWHERE Inserttime > CONVERT(datetime, '@{activity('Getmaxitime').output.firstRow.date1}', 120)",
+							"value": "SELECT Order_Id, Name, Inserttime \nFROM Orders\nWHERE Inserttime > @{activity('Getmaxitime').output.firstRow.date1}",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
